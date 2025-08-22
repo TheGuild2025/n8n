@@ -1,25 +1,22 @@
+app = "n8n-guild"
+primary_region = "ord"
+
 [build]
   image = "n8nio/n8n:latest"
 
 [env]
-  N8N_HOST = "n8n-guild.fly.dev"
   N8N_PORT = "5678"
+  N8N_HOST = "n8n-guild.fly.dev"
   N8N_PROTOCOL = "https"
   WEBHOOK_URL = "https://n8n-guild.fly.dev/"
-  # Generate and keep this secret safe:
-  N8N_ENCRYPTION_KEY = "replace-with-32+char-random"
 
-[[services]]
+[http_service]
   internal_port = 5678
-  protocol = "tcp"
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-  [[services.ports]]
-    port = 443
-    handlers = ["tls", "http"]
+  force_https = true
+  auto_start_machines = true
+  auto_stop_machines = false
+  min_machines_running = 1
 
-# Persist n8n data
-[[mounts]]
+[mounts]
   source = "n8n_data"
   destination = "/home/node/.n8n"
