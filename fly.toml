@@ -5,7 +5,11 @@ primary_region = "ord"
   image = "n8nio/n8n:latest"
 
 [env]
+  # Make n8n listen on the container's public interface
+  N8N_LISTEN_ADDRESS = "0.0.0.0"
   N8N_PORT = "5678"
+
+  # External URLs for webhooks/editor (fine to keep)
   N8N_HOST = "n8n-guild.fly.dev"
   N8N_PROTOCOL = "https"
   WEBHOOK_URL = "https://n8n-guild.fly.dev/"
@@ -17,6 +21,7 @@ primary_region = "ord"
   auto_stop_machines = false
   min_machines_running = 1
 
-[mounts]
+[[mounts]]
   source = "n8n_data"
   destination = "/home/node/.n8n"
+
