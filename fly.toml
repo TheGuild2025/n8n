@@ -1,24 +1,25 @@
-# fly.toml file for n8n
-app = "mainframe-qpny-g"
-primary_region = "iad"
-
 [build]
-  dockerfile = "Dockerfile"
+  image = "n8nio/n8n:latest"
 
 [env]
-PORT = 5678
+  N8N_HOST = "n8n-guild.fly.dev"
+  N8N_PORT = "5678"
+  N8N_PROTOCOL = "https"
+  WEBHOOK_URL = "https://n8n-guild.fly.dev/"
+  # Generate and keep this secret safe:
+  N8N_ENCRYPTION_KEY = "replace-with-32+char-random"
 
-[http_service]
-  internal_port       = 5678
-  force_https         = true
-  auto_stop_machines  = true
-  auto_start_machines = true
-  min_machines_running = 0
+[[services]]
+  internal_port = 5678
+  protocol = "tcp"
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
 
+# Persist n8n data
 [[mounts]]
-  source      = "n8n_data"
+  source = "n8n_data"
   destination = "/home/node/.n8n"
-  
-[[statics]]
-  guest_path = "/app/UI"
-  url_prefix = "/"
