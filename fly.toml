@@ -1,31 +1,23 @@
-# App name & region
 app = "constellarium-n8n"
 primary_region = "ord"
 
-# Environment variables
 [env]
   N8N_HOST = "0.0.0.0"
-  N8N_PORT = "8080"
+  N8N_PORT = "5678"
   N8N_PROTOCOL = "https"
   N8N_EDITOR_BASE_URL = "https://constellarium-n8n.fly.dev"
   WEBHOOK_URL = "https://constellarium-n8n.fly.dev"
 
-# Force Fly to serve traffic on 8080
 [http_service]
-  internal_port = 8080
+  internal_port = 5678
   force_https = true
   auto_start_machines = true
   auto_stop_machines = false
   min_machines_running = 1
 
-# Machine size
 [[vm]]
   memory = "1gb"
   cpu_kind = "shared"
   cpus = 1
-
-# Force n8n to bind to the right port
-[deploy]
-  command = "n8n start --host=0.0.0.0 --port=8080"
 
 
