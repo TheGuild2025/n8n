@@ -1,8 +1,6 @@
 app = "constellarium-n8n"
 primary_region = "ord"
 
-[build]
-
 [env]
   N8N_HOST = "0.0.0.0"
   N8N_PORT = "8080"
@@ -16,7 +14,3 @@ primary_region = "ord"
   auto_start_machines = true
   auto_stop_machines = false
   min_machines_running = 1
-
-[[mounts]]
-  source = "n8n_data"
-  destination = "/home/node/.n8n"
