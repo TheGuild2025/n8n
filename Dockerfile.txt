@@ -1,8 +1,7 @@
-# Use the official n8n image
 FROM n8nio/n8n:latest
 
-# Expose n8n's default port
-EXPOSE 5678
+# Force expose the port Fly needs
+EXPOSE 8080
 
-# Start n8n, binding to 0.0.0.0:5678 so Fly can connect
-CMD ["n8n", "start", "--host", "0.0.0.0", "--port", "5678"]
+# Start n8n bound to the right interface + port
+CMD ["n8n", "start", "--host", "0.0.0.0", "--port", "8080"]
