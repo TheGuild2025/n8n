@@ -1,3 +1,6 @@
+app = "constellarium-n8n"
+primary_region = "ord"
+
 [env]
   N8N_HOST = "0.0.0.0"
   N8N_PORT = "5678"
