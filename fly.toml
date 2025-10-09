@@ -1,20 +1,25 @@
 app = "constellarium-n8n"
 primary_region = "ord"
 
+[build]
+  image = "n8nio/n8n"
+
 [env]
-  N8N_HOST = "0.0.0.0"
   N8N_PORT = "8080"
+  N8N_HOST = "0.0.0.0"
   N8N_PROTOCOL = "https"
   N8N_EDITOR_BASE_URL = "https://constellarium-n8n.fly.dev"
   WEBHOOK_URL = "https://constellarium-n8n.fly.dev"
 
-[build]
-  image = "n8nio/n8n"
-  entrypoint = [ "n8n" ]
-
-[http_service]
+[[services]]
   internal_port = 8080
-  force_https = true
-  auto_start_machines = true
-  auto_stop_machines = false
-  min_machines_running = 1
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
