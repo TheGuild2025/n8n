@@ -1,7 +1,7 @@
 FROM n8nio/n8n:latest
 
-# Expose the port Fly expects
+# Force expose the port Fly requires
 EXPOSE 8080
 
-# Run n8n with correct host and port
+# Run n8n bound to 0.0.0.0:8080
 CMD ["n8n", "start", "--host", "0.0.0.0", "--port", "8080"]
