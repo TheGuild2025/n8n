@@ -1,7 +1,8 @@
+# Use official n8n image
 FROM n8nio/n8n:latest
 
-# Force expose the port Fly requires
+# Expose the correct port (Fly requires this)
 EXPOSE 8080
 
-# Run n8n bound to 0.0.0.0:8080
+# Start n8n and bind to 0.0.0.0 for Fly.io networking
 CMD ["n8n", "start", "--host", "0.0.0.0", "--port", "8080"]
