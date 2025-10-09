@@ -1,11 +1,7 @@
-# Use the official n8n image
 FROM n8nio/n8n:latest
 
-# Expose the port Fly.io expects
+# Expose the port Fly expects
 EXPOSE 8080
 
-# Ensure that n8n is being called directly
-ENTRYPOINT ["n8n"]
-
-# Start n8n with the correct host binding for Fly.io
-CMD ["start", "--host", "0.0.0.0", "--port", "8080"]
+# Run n8n with correct host and port
+CMD ["n8n", "start", "--host", "0.0.0.0", "--port", "8080"]
