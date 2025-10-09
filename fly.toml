@@ -1,23 +1,25 @@
+# fly.toml file for n8n
 app = "constellarium-n8n"
 primary_region = "ord"
 
+[build]
+  dockerfile = "Dockerfile"
+
 [env]
-  N8N_HOST = "0.0.0.0"
-  N8N_PORT = "5678"
-  N8N_PROTOCOL = "https"
-  N8N_EDITOR_BASE_URL = "https://constellarium-n8n.fly.dev"
-  WEBHOOK_URL = "https://constellarium-n8n.fly.dev"
+  PORT = 5678
 
 [http_service]
-  internal_port = 5678
-  force_https = true
+  internal_port       = 5678
+  force_https         = true
+  auto_stop_machines  = true
   auto_start_machines = true
-  auto_stop_machines = false
-  min_machines_running = 1
+  min_machines_running = 0
 
-[[vm]]
-  memory = "1gb"
-  cpu_kind = "shared"
-  cpus = 1
-
+[[mounts]]
+  source      = "n8n_data"
+  destination = "/home/node/.n8n"
+ 
+[[statics]]
+  guest_path = "/app/UI"
+  url_prefix = "/"
 
