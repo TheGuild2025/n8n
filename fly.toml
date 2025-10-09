@@ -2,14 +2,13 @@ app = "constellarium-n8n"
 primary_region = "ord"
 
 [build]
-  image = "n8nio/n8n:latest"
 
 [env]
   N8N_HOST = "0.0.0.0"
   N8N_PORT = "8080"
   N8N_PROTOCOL = "https"
   N8N_EDITOR_BASE_URL = "https://constellarium-n8n.fly.dev"
-  WEBHOOK_URL = "https://constellarium-n8n.fly.dev/"
+  WEBHOOK_URL = "https://constellarium-n8n.fly.dev"
 
 [http_service]
   internal_port = 8080
