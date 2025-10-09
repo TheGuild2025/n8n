@@ -8,6 +8,10 @@ primary_region = "ord"
   N8N_EDITOR_BASE_URL = "https://constellarium-n8n.fly.dev"
   WEBHOOK_URL = "https://constellarium-n8n.fly.dev"
 
+[build]
+  image = "n8nio/n8n"
+  entrypoint = [ "n8n" ]
+
 [http_service]
   internal_port = 8080
   force_https = true
